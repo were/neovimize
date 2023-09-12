@@ -1,11 +1,5 @@
 RESTORE_PWD=`pwd`
 
-# Init $HOME/.local/repo
-mkdir -p $HOME/.local
-cd $HOME/.local
-mkdir -p repo
-cd repo
-
 # Find the neovim version
 NVIM=`which nvim`
 if [ $? -eq "0" ]; then
@@ -19,7 +13,7 @@ fi
 # Clone the source from github repo.
 if [ -d "./neovim" ]; then
   cd neovim
-  git pull origin stable
+  git fetch origin stable
 else
   echo "Downloading neovim from GitHub..."
   git clone https://github.com/neovim/neovim
@@ -27,17 +21,20 @@ else
 fi
 
 echo "Check out the stable version..."
-LATEST_VERSION="v"`git checkout stable | awk '{ print $NF }'`
+LATEST_VERSION="v"`git checkout stable 2>&1 | awk '{ print $NF }'`
 
 if [ $LATEST_VERSION \> $NVIM_VERSION ]; then
   # Build and install
-  make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX="$HOME/.local" > compile.log 2>&1
+  echo "Latest stable is newer than the current version!"
+  echo latest: ${LATEST_VERSION}
+  echo ours: ${NVIM_VERSION} "("v.0.0.0 indicates uninstalled")"
+  echo "Built from source and installed to "$HOME/.local
+  make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX="$HOME/.local" > $RESTORE_PWD/compile.log 2>&1
   if [ $? -eq "0" ]; then
     make install
-    echo "Latest stable is newer than the current version!"
-    echo "Built from source and installed to "$HOME/.local
     echo "It is highly recommended to append this after your shell-rc:"
     echo "export PATH=\"\$HOME/.local/bin\":\$PATH"
+    echo "alias vim=nvim"
     rm compile.log
   else
     echo "Compilation failed! Please check ./compile.log for more details!"
