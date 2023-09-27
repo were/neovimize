@@ -22,20 +22,21 @@ fi
 
 echo "Check out the stable version..."
 LATEST_VERSION="v"`git checkout stable 2>&1 | awk '{ print $NF }'`
+echo Latest Stable Neovim: ${LATEST_VERSION}
 
 if [ $LATEST_VERSION \> $NVIM_VERSION ]; then
   # Build and install
   echo "Latest stable is newer than the current version!"
-  echo latest: ${LATEST_VERSION}
-  echo ours: ${NVIM_VERSION} "("v.0.0.0 indicates uninstalled")"
-  echo "Built from source and installed to "$HOME/.local
-  make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX="$HOME/.local" > $RESTORE_PWD/compile.log 2>&1
+  echo Ours: ${NVIM_VERSION} "("v.0.0.0 indicates uninstalled")"
+  echo "Building from source"
+  make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX="$HOME/.local" 2>&1 | tee $RESTORE_PWD/compile.log
   if [ $? -eq "0" ]; then
     make install
+    echo "Build done.. Installed to "$HOME/.local
     echo "It is highly recommended to append this after your shell-rc:"
     echo "export PATH=\"\$HOME/.local/bin\":\$PATH"
     echo "alias vim=nvim"
-    rm compile.log
+    rm $RESTORE_PWD/compile.log
   else
     echo "Compilation failed! Please check ./compile.log for more details!"
   fi
