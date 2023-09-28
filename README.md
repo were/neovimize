@@ -6,6 +6,6 @@
 # How to use
 
 ````
-bash ./download.sh
-bash ./plug.sh
+bash ./download.sh # Download and install Neovim
+bash ./plug.sh     # Install plugins
 ````
