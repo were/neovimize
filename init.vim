@@ -80,21 +80,21 @@ endfunction
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " CoC code navigation keys.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <F2> <Plug>(coc-rename)
-nmap <silent> <F4>  <Plug>(coc-fix-current)
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+map gd <Plug>(coc-definition)
+map gi <Plug>(coc-implementation)
+map gr <Plug>(coc-references)
+map <F2> <Plug>(coc-rename)
+map <F4>  <Plug>(coc-fix-current)
+map [g <Plug>(coc-diagnostic-prev)
+map ]g <Plug>(coc-diagnostic-next)
 
 " Find files using Telescope command-line sugar.
 " I actually like Ctrl+p to pop up the fuzzy finder, just like it is in
 " VSCode.
-nnoremap <leader><C-p> <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+map <C-p> :Telescope find_files<cr>
+map fg <cmd>Telescope live_grep<cr>
+map fb <cmd>Telescope buffers<cr>
+map fh <cmd>Telescope help_tags<cr>
 
 " LLVM coding guidelines conformance for VIM
 " $Revision$
