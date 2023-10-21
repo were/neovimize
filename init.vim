@@ -47,6 +47,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'dikiaap/minimalist'
 " For code completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Github Copilot
+Plug 'github/copilot.vim'
 call plug#end()            " required
 
 
@@ -104,7 +106,11 @@ nnoremap ]g <Plug>(coc-diagnostic-next)
 " Find files using Telescope command-line sugar.
 " I actually like Ctrl+p to pop up the fuzzy finder, just like it is in
 " VSCode.
-nnoremap <C-p> :Telescope find_files<cr>
+if system('git rev-parse --is-inside-work-tree') == "true\n"
+  nnoremap <C-p> :Telescope git_files<cr>
+else
+  nnoremap <C-p> :Telescope find_files<cr>
+endif
 nnoremap fg <cmd>Telescope live_grep<cr>
 nnoremap fb <cmd>Telescope buffers<cr>
 nnoremap fh <cmd>Telescope help_tags<cr>
