@@ -107,9 +107,9 @@ nnoremap ]g <Plug>(coc-diagnostic-next)
 " I actually like Ctrl+p to pop up the fuzzy finder, just like it is in
 " VSCode.
 if system('git rev-parse --is-inside-work-tree') == "true\n"
-  nnoremap <C-p> :Telescope git_files<cr>
+  nnoremap <C-p> :lua require'telescope.builtin'.git_files{recurse_submodules=true}<cr>
 else
-  nnoremap <C-p> :Telescope find_files<cr>
+  nnoremap <C-p> :lua require'telescope.builtin'.find_files{no_ignore=true,no_ignore_parent=true}<cr>
 endif
 nnoremap fg <cmd>Telescope live_grep<cr>
 nnoremap fb <cmd>Telescope buffers<cr>
