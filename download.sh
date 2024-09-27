@@ -26,7 +26,7 @@ echo "Check out the stable version..."
 LATEST_VERSION="v"`git checkout stable 2>&1 | awk '{ print $NF }'`
 echo Latest Stable Neovim: ${LATEST_VERSION}
 
-if [ $LATEST_VERSION > $NVIM_VERSION ]; then
+if [ $LATEST_VERSION \> $NVIM_VERSION ]; then
   # Build and install
   echo "Latest stable is newer than the current version!"
   echo Ours: ${NVIM_VERSION} "("v.0.0.0 indicates uninstalled")"

@@ -6,16 +6,18 @@ filetype on
 syntax on
 
 " General indents.
-autocmd FileType python,vim set sw=4
-autocmd FileType python,vim set ts=4
+autocmd FileType python,vim,sh set sw=4
+autocmd FileType python,vim,sh set ts=4
 autocmd FileType json set sw=4
 autocmd FileType json set ts=4
-autocmd FileType rust set ts=2
-autocmd FileType rust set sw=2
-autocmd FileType python,c,cpp set autoindent
-autocmd FileType c,cpp,python,cuda,json,vim set expandtab
+autocmd FileType c,cpp,rust,cmake set ts=2
+autocmd FileType c,cpp,rust,cmake set sw=2
+autocmd FileType c,cpp set autoindent
+autocmd FileType c,cpp,python,cuda,json,vim,sh,cmake set expandtab
 autocmd FileType make set noexpandtab
 set smarttab
+
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 map<C-s> :w<CR>
 
@@ -49,6 +51,15 @@ Plug 'dikiaap/minimalist'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Github Copilot
 Plug 'github/copilot.vim'
+" AI Editor Deps
+Plug 'stevearc/dressing.nvim'
+Plug 'MunifTanjim/nui.nvim'
+Plug 'HakonHarnes/img-clip.nvim'
+Plug 'nvim-tree/nvim-web-devicons' "or Plug 'echasnovski/mini.icons'
+Plug 'MeanderingProgrammer/render-markdown.nvim'
+" Avante.nvim
+Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': { -> avante#build('source=true') } }
+
 call plug#end()            " required
 
 
