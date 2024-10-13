@@ -7,7 +7,8 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 INIT_PREFIX=$HOME/.config/nvim
 
 mkdir -p $INIT_PREFIX
-cp ./init.vim $INIT_PREFIX
+cp ./init.lua $INIT_PREFIX
+cp ./legacy.vim $INIT_PREFIX
 
 # Install all plugins
 nvim -c "PlugInstall" -c "qa!"
