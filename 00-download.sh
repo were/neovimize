@@ -5,8 +5,10 @@ RESTORE_PWD=`pwd`
 # Find the neovim version
 NVIM=`which nvim`
 if [ $? -eq "0" ]; then
-  NVIM_VERSION=`$NVIM --version | head -n1 | awk '{ print $NF }'`
-  echo $NVIM_VERSION
+  echo "neovim already installed, quit!"
+  echo "If you want to reinstall/upgrate it, please uninstall!"
+  echo "If you used this script to install, it is as simple as \`rm -rf $HOME/.local/nvim\`"
+  exit 0
 else
   NVIM_VERSION="v0.0.0"
   echo "neovim not installed!"

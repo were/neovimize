@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Download vim plug.
-curl -s https://raw.githubusercontent.com/folke/lazy.nvim/main/bootstrap.lua
-
 INIT_PREFIX=$HOME/.config/nvim
 
 mkdir -p $INIT_PREFIX
