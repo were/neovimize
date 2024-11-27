@@ -26,7 +26,6 @@ map<C-s> :w<CR>
 
 set t_Co=256
 set number
-colorscheme minimalist
 set cc=101
 set ttimeoutlen=50
 
@@ -35,35 +34,8 @@ set ttimeoutlen=50
 highlight LongLine ctermbg=DarkYellow guibg=DarkYellow
 highlight WhitespaceEOL ctermbg=DarkYellow guibg=DarkYellow
 
-let g:airline_theme='minimalist'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-
-call plug#begin('~/.vim/bundle/')
-" For fuzzy file navigator
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.3' }
-" For git
-Plug 'tpope/vim-fugitive'
-" For color theme
-Plug 'dikiaap/minimalist'
-" For code completion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Github Copilot
-Plug 'github/copilot.vim'
-" AI Editor Deps
-Plug 'stevearc/dressing.nvim'
-Plug 'MunifTanjim/nui.nvim'
-Plug 'HakonHarnes/img-clip.nvim'
-Plug 'nvim-tree/nvim-web-devicons' "or Plug 'echasnovski/mini.icons'
-Plug 'MeanderingProgrammer/render-markdown.nvim'
-" Avante.nvim
-Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': { -> avante#build('source=true') } }
-
-call plug#end()            " required
-
-
-filetype plugin on    " required
 
 " Use tab to select next auto-completion.
 function! CheckBackspace() abort
