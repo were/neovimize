@@ -1,4 +1,5 @@
 vim.cmd('source ~/.config/nvim/legacy.vim')
+vim.opt.signcolumn = 'yes'
 
 require('config.lazy')
 
